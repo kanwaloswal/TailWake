@@ -105,9 +105,9 @@ Once TailWake is running on your Mac Mini, you can access it over Tailscale in t
 
 - On your Mac Mini, run:
   ```bash
-  tailscale serve --bg 8080
+  tailscale serve -p 8081
   ```
-- Now visit `https://mac-mini.your-tailnet.ts.net` from anywhere on your Tailnet!
+- Now visit `https://mac-mini.your-tailnet.ts.net:8081` from anywhere on your Tailnet!
 
 ---
 
