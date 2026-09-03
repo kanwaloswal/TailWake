@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TailWake - Wake-on-LAN Controller</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="background-glow glow-1"></div>
+  <div class="background-glow glow-2"></div>
+
+  <div class="app-container">
+    <header class="app-header">
+      <div class="brand">
+        <div class="brand-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M18.36 6.64a9 9 0 1 1-12.73 0"></path>
+            <line x1="12" y1="2" x2="12" y2="12"></line>
+          </svg>
+        </div>
+        <div>
+          <h1>TailWake</h1>
+          <p class="subtitle">Wake-on-LAN over Tailscale & LAN</p>
+        </div>
+      </div>
+      <div class="header-actions">
+        <span class="pulse-indicator"></span>
+        <span id="daemon-host" class="host-badge">Loading...</span>
+        <button id="refresh-btn" class="btn-icon" title="Refresh Status">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M23 4v6h-6"></path>
+            <path d="M1 20v-6h6"></path>
+            <path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"></path>
+          </svg>
+        </button>
+      </div>
+    </header>
+
+    <main class="main-content">
+      <section class="section-title">
+        <h2>Configured Devices</h2>
+        <span id="device-count" class="badge-count">0 devices</span>
+      </section>
+
+      <div id="devices-grid" class="devices-grid">
+        <!-- Devices rendered dynamically by app.js -->
+        <div class="card-skeleton">
+          <div class="skeleton-title"></div>
+          <div class="skeleton-text"></div>
+          <div class="skeleton-btn"></div>
+        </div>
+      </div>
+
+      <section class="api-help-card">
+        <div class="api-help-header">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="2" y="2" width="20" height="8" rx="2" ry="2"></rect>
+
+            <rect x="2" y="14" width="20" height="8" rx="2" ry="2"></rect>
+            <line x1="6" y1="6" x2="6.01" y2="6"></line>
+            <line x1="6" y1="18" x2="6.01" y2="18"></line>
+          </svg>
+          <h3>Quick Triggers & Apple Shortcuts API</h3>
+        </div>
+        <p>You can wake up any device with a simple HTTP GET request from your browser bookmarks, iOS Action Button, or Apple Shortcuts:</p>
+        <div class="code-box">
+          <code id="sample-curl">curl http://mini.local:8080/wake/macbook-pro</code>
+          <button id="copy-curl-btn" class="btn-secondary btn-sm">Copy</button>
+        </div>
+      </section>
+    </main>
+
+    <footer class="app-footer">
+      <p>TailWake Open Source • Run on Mac Mini as launchd daemon</p>
+    </footer>
+  </div>
+
+  <div id="toast-container" class="toast-container"></div>
+
+  <script src="app.js"></script>
+</body>
+</html>

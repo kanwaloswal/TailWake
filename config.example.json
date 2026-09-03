@@ -1,0 +1,25 @@
+{
+  "port": 8080,
+  "bind_address": "0.0.0.0",
+  "auth_token": "",
+  "devices": [
+    {
+      "id": "macbook-pro",
+      "name": "MacBook Pro",
+      "mac": "AA:BB:CC:DD:EE:FF",
+      "broadcast_ip": "255.255.255.255",
+      "wol_port": 9,
+      "ping_host": "192.168.1.50",
+      "ping_port": 22
+    },
+    {
+      "id": "studio-pc",
+      "name": "Studio Desktop PC",
+      "mac": "11:22:33:44:55:66",
+      "broadcast_ip": "192.168.1.255",
+      "wol_port": 9,
+      "ping_host": "192.168.1.60",
+      "ping_port": 3389
+    }
+  ]
+}
