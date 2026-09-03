@@ -9,9 +9,11 @@
 ## 🎯 The Problem & Solution
 
 ### The Network Reality
+
 Tailscale connects your devices into a secure layer-3 mesh network (Tailnet). However, standard Wake-on-LAN relies on **layer-2 UDP broadcast magic packets** (`FF:FF:FF:FF:FF:FF` + 16x MAC address) sent to `255.255.255.255`. Because VPN overlay networks do not route local ethernet broadcasts across subnets, you cannot send a WoL broadcast packet directly from your phone or remote laptop over Tailscale to wake a sleeping machine.
 
 ### The TailWake Solution
+
 1. **Always-On Mac Mini**: Runs **TailWake** as a background HTTP daemon (~5MB RAM footprint).
 2. **Remote Trigger**: When you visit the Web UI or hit `http://mini.tailscale-ip:8080/wake/macbook-pro` from your phone or laptop over Tailscale, TailWake receives the HTTP request.
 3. **Local WoL Broadcast**: The Mac Mini generates the raw UDP magic packet and broadcasts it over its physical Wi-Fi/Ethernet network to your MacBook Pro.
@@ -36,7 +38,7 @@ To allow your MacBook Pro to wake up when receiving network packets:
      ifconfig en0 | grep ether
      # Output: ether aa:bb:cc:dd:ee:ff
      ```
-     *(If using Wi-Fi, `en0` is usually Wi-Fi on Apple Silicon. Check `ifconfig` if needed).*
+     _(If using Wi-Fi, `en0` is usually Wi-Fi on Apple Silicon. Check `ifconfig` if needed)._
    - **GUI Method**: Open **System Settings** → **Network** → Select your active connection (Wi-Fi or Ethernet) → Click **Details...** → Select **Hardware** tab → Copy **MAC Address**.
 
 ---
@@ -46,17 +48,20 @@ To allow your MacBook Pro to wake up when receiving network packets:
 #### Option A: Quick Installation & Launchd Daemon (Recommended)
 
 1. Clone or copy TailWake to your Mac Mini:
+
    ```bash
    git clone https://github.com/kanwaloswal/TailWake.git
    cd TailWake
    ```
 
 2. Build the binary:
+
    ```bash
    make build
    ```
 
 3. Create your `config.json`:
+
    ```json
    {
      "port": 8080,
@@ -75,14 +80,15 @@ To allow your MacBook Pro to wake up when receiving network packets:
      ]
    }
    ```
-   *Replace `AA:BB:CC:DD:EE:FF` with your MacBook Pro's MAC address, and `ping_host` with its local IP.*
+
+   _Replace `AA:BB:CC:DD:EE:FF` with your MacBook Pro's MAC address, and `ping_host` with its local IP._
 
 4. **Install as macOS Background Daemon (`launchd`)**:
    Run the native installer command:
    ```bash
    ./tailwake service install --config $(pwd)/config.json
    ```
-   *(TailWake will now start automatically whenever your Mac Mini boots or logs in!)*
+   _(TailWake will now start automatically whenever your Mac Mini boots or logs in!)_
 
 ---
 
@@ -91,10 +97,12 @@ To allow your MacBook Pro to wake up when receiving network packets:
 Once TailWake is running on your Mac Mini, you can access it over Tailscale in two ways:
 
 #### Method 1: Direct Tailscale IP / MagicDNS
+
 - Open your browser on any Tailscale-connected device (iPhone, iPad, laptop) and visit:
   `http://<mac-mini-tailscale-ip>:8080` (e.g. `http://100.115.20.10:8080`) or `http://mac-mini:8080`.
 
 #### Method 2: Tailscale Serve (Clean HTTPS URL)
+
 - On your Mac Mini, run:
   ```bash
   tailscale serve --bg 8080
@@ -108,11 +116,12 @@ Once TailWake is running on your Mac Mini, you can access it over Tailscale in t
 Because TailWake exposes simple GET URL triggers (`/wake/<device_id>`), you can trigger Wake-on-LAN without even opening a browser!
 
 ### Setup an Apple Shortcut (iPhone Home Screen / Siri)
+
 1. Open the **Shortcuts** app on your iPhone or Mac.
 2. Create a new Shortcut named **"Wake MacBook"**.
 3. Add action: **Get Contents of URL**.
 4. Enter URL: `http://<mac-mini-tailscale-ip>:8080/wake/macbook-pro` (or with token: `?token=YOUR_SECRET`).
-5. Add action: **Show Notification** → *"MacBook Pro is waking up!"*.
+5. Add action: **Show Notification** → _"MacBook Pro is waking up!"_.
 6. Add to **Home Screen** or assign to **iPhone Action Button**!
 
 ---
@@ -144,6 +153,7 @@ TailWake/
 ```
 
 ### Key Concepts Highlighted in the Code:
+
 - **Embedded Web UI (`go:embed`)**: The entire `web/` directory (HTML/CSS/JS) is compiled directly into the binary at build time using `//go:embed web/*`. You get a single executable file with a complete UI!
 - **Pure Sockets (`net.DialUDP`)**: `pkg/wol/wol.go` demonstrates constructing a 102-byte byte array (`[102]byte`) and transmitting it directly over UDP sockets.
 - **Go Routines & Mutexes (`sync.RWMutex`)**: `pkg/status/status.go` demonstrates safe concurrent memory access when checking device statuses.
@@ -171,4 +181,7 @@ tailwake version
 ---
 
 ## 📄 License
-MIT License. Free and open source for everyone.
+
+Apache 2.0 License.
+
+Free and open source for everyone.
