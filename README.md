@@ -2,8 +2,6 @@
 
 **TailWake** is a lightweight, low-complexity, open-source Wake-on-LAN (WoL) HTTP daemon and Web UI designed for setups where you have an always-on machine (e.g., a Mac Mini) and target sleeping devices (e.g., a MacBook Pro), accessible securely over **Tailscale** or local network.
 
-![TailWake Web UI](https://raw.githubusercontent.com/tailwake/tailwake/main/docs/preview.png)
-
 ---
 
 ## 🎯 The Problem & Solution
