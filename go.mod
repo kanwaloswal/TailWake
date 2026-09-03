@@ -1,3 +1,3 @@
-module github.com/tailwake/tailwake
+module github.com/kanwaloswal/TailWake
 
 go 1.22

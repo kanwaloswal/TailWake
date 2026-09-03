@@ -47,8 +47,8 @@ To allow your MacBook Pro to wake up when receiving network packets:
 
 1. Clone or copy TailWake to your Mac Mini:
    ```bash
-   git clone https://github.com/your-username/wakeuponlan.git
-   cd wakeuponlan
+   git clone https://github.com/kanwaloswal/TailWake.git
+   cd TailWake
    ```
 
 2. Build the binary:
@@ -131,7 +131,7 @@ Because TailWake exposes simple GET URL triggers (`/wake/<device_id>`), you can 
 If you are new to Go, TailWake is designed as a clean reference project. Here is how the codebase is organized:
 
 ```
-wakeuponlan/
+TailWake/
 ├── main.go                 # Entrypoint: embedded static assets, CLI command parser
 ├── go.mod                  # Go module definition (zero third-party dependencies)
 ├── pkg/
