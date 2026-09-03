@@ -7,7 +7,7 @@ import (
 	"sync"
 	"time"
 
-	"github.com/tailwake/tailwake/pkg/config"
+	"github.com/kanwaloswal/TailWake/pkg/config"
 )
 
 // DeviceStatus represents the current online/awake state of a device.

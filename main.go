@@ -11,10 +11,10 @@ import (
 	"path/filepath"
 	"time"
 
-	"github.com/tailwake/tailwake/pkg/config"
-	"github.com/tailwake/tailwake/pkg/service"
-	"github.com/tailwake/tailwake/pkg/web"
-	"github.com/tailwake/tailwake/pkg/wol"
+	"github.com/kanwaloswal/TailWake/pkg/config"
+	"github.com/kanwaloswal/TailWake/pkg/service"
+	"github.com/kanwaloswal/TailWake/pkg/web"
+	"github.com/kanwaloswal/TailWake/pkg/wol"
 )
 
 // Version info

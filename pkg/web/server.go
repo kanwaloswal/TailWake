@@ -10,9 +10,9 @@ import (
 	"net/http"
 	"strings"
 
-	"github.com/tailwake/tailwake/pkg/config"
-	"github.com/tailwake/tailwake/pkg/status"
-	"github.com/tailwake/tailwake/pkg/wol"
+	"github.com/kanwaloswal/TailWake/pkg/config"
+	"github.com/kanwaloswal/TailWake/pkg/status"
+	"github.com/kanwaloswal/TailWake/pkg/wol"
 )
 
 // Server encapsulates the HTTP routing, configuration, and WoL engine state.
